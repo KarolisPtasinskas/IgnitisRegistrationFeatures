@@ -1,0 +1,43 @@
+<h3 class="mb-4">Form: {{ form.name }}</h3>
+
+<table class="container table table-bordered">
+  <thead class="p-3 mb-2">
+    <tr>
+      <th scope="col">Registracijos požymiai</th>
+      <th scope="col">Reikšmė</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let formQuestion of form.questions">
+      <td scope="row">
+        {{formQuestion.name}}
+      </td>
+      <td>
+        <select class="form-control"
+                [disabled]="selectDisabled == true"
+                name="value"
+                #v
+                (change)="onSelectChangeAnswer(formQuestion.id, v.value)">
+          <option [value]="null"></option>
+          <option *ngFor="let answer of formQuestion.answers"
+                  [value]="answer.id"
+                  [selected]="formQuestion.selectedAnswerId == answer.id">
+            {{answer.name}}
+          </option>
+        </select>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="">
+  <button class="btn btn-secondary mt-1 mr-3" [disabled]="adjustBtnDisabled == true" (click)="adjustBtnClick()">
+    Koreguoti požymius
+  </button>
+  <button class="btn btn-secondary mt-1 mr-3" [disabled]="saveBtnDisabled == true" (click)="saveBtnClick()">
+    Saugoti pataisymus
+  </button>
+  <button class="btn btn-secondary mt-1 mr-3" [disabled]="cancelBtnDisabled == true" (click)="cancelBtnClick()">
+    Atšaukti pataisymus
+  </button>
+</div>
