@@ -1,4 +1,4 @@
-<h3 class="mb-4">Form: {{ form.name }}</h3>
+<h3 class="mb-4">Form: {{ form?.name }}</h3>
 
 <table class="container table table-bordered">
   <thead class="p-3 mb-2">
@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let formQuestion of form.questions">
+    <tr *ngFor="let formQuestion of form?.questions">
       <td scope="row">
         {{formQuestion.name}}
       </td>
